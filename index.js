@@ -4,9 +4,9 @@ const app = express();
 
 
 app.use(express.static('client/build'));
-app.use(cors);
+app.use(cors());
 
-app.get('/accounts/all', (req, res) => {
+app.get('/accounts/all', function (req, res) {
   res.send({
     name: 'peter',
     email: 'peter@mit.edu',

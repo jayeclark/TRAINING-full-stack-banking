@@ -1,6 +1,6 @@
 import './styles/App.css';
 import './styles/bootstrap.min.css';
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import Notification from './components/Notification';
 import Home from './pages/Home.js';
@@ -79,7 +79,7 @@ function App() {
 
   return (
     <>
-    <HashRouter>
+    <BrowserRouter>
     <UserDBContext.Provider value={{users, addUser}}>
     <UserContext.Provider value={{ loggedInUser, logOut, logIn }}>
         <LanguageContext.Provider value={{ language, changeLanguage }}>
@@ -108,7 +108,7 @@ function App() {
           </LanguageContext.Provider>
           </UserContext.Provider>
       </UserDBContext.Provider>
-    </HashRouter>
+    </BrowserRouter>
     </>
   );
 }
