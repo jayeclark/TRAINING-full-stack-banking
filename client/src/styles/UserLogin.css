@@ -1,0 +1,56 @@
+.login-link {
+    padding: 0px 15px 0px 10px;
+    font-weight:bold;
+    cursor: pointer;
+}
+.login-link:hover {
+    text-decoration-line: underline;
+}
+
+.language-toggle {
+    outline: none;
+    border: none;
+    padding: 5px 0px 5px 6px;
+    position: relative;
+    right: 0px;
+    z-index:9999;
+    cursor: pointer;
+}
+
+.language-toggle:hover {
+    text-decoration-line: underline;
+}
+
+.language-toggle:active {
+    outline: none;
+    border: none;
+}
+
+.language-toggle:focus-within {
+    outline: none;
+    border: none;
+}
+
+.language-toggle-option {
+    padding: 5px;
+    font-size: inherit;
+}
+
+.language-toggle-container {
+    padding: 0px 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.language-toggle-container::before {
+    content: ' ';
+    height: 13px;
+    display: inline-block;
+    width: 13px;
+    background: url('../assets/globe.svg');
+    background-size: contain;
+    position:relative;
+    top: 2px;
+    padding-right: 0px;
+}

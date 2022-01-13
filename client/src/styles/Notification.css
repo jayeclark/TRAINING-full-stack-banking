@@ -1,0 +1,131 @@
+.notification-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 180px 10% 0px 10%;
+    align-items: flex-start;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 9999;
+}
+
+.notification-card {
+    width: 100%;
+    background-color: transparent;
+    max-width: 450px;
+    min-width: 200px;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    border-color: #666;
+    box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.4);
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.notification-card .card {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-color: inherit;
+    border-width: 2px;
+    border-bottom: none;
+}
+
+.notification-countdown {
+    width: 100%;
+    height: 6px;
+    position: relative;
+    margin-top: -1px;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    border-right: 2px solid #666;
+    border-bottom: 2px solid #666;
+    border-left: 2px solid #666;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.notification-countdown-red {
+    width: 100%;
+    height: 8px;
+    position: relative;
+    top: 0px;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    border-right: 2px solid red;
+    border-bottom: 2px solid red;
+    border-left: 2px solid red;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.notification-countdown-green {
+    width: 100%;
+    height: 8px;
+    margin-top: -1px;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    border-right: 2px solid green;
+    border-bottom: 2px solid green;
+    border-left: 2px solid green;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.countdown-progress-green {
+    background-color: green;
+    height: 8px;
+    width: 100%;
+    transition-property: width;
+    transition-timing-function: linear;
+    transition-delay: 100ms;
+}
+
+.countdown-progress-red {
+    background-color: red;
+    height: 8px;
+    transition-property: width;
+    transition-timing-function: linear;
+    transition-delay: 100ms;
+}
+
+.countdown-progress {
+    background-color: #666;
+    height: 8px;
+    transition-property: width;
+    transition-timing-function: linear;
+    transition-delay: 100ms;
+}
+
+.notification-card.green {
+    border-width: 2px !important;
+    border-color: green !important; 
+}
+
+.notification-card.red {
+    border-width: 2px;
+    border-color: red; 
+}
+
+.close-button {
+    text-align: right;
+    margin: -10px -5px;
+}
+
+.close-x {
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    opacity: 0.6;
+}
+
+.close-x:hover {
+    opacity: 1;
+}

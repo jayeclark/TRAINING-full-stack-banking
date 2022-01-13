@@ -1,0 +1,243 @@
+{
+    "pages": {
+        "home": {
+            "nav-button": "Inicio",
+            "nav-tool-tip": "Volver a Inicio",
+            "nav-route": "/",
+            "header": "Bienvenido a Bad Bank of America",
+            "card": {
+                "cardMsg":"Vea cómo las soluciones bancarias de Bad Bank of America® y los servicios de Bad Merrill Edge® Investment pueden ayudarle a facilitar su vida financiera personal."
+            },
+            "id": "home-page",
+            "valueIfNotLoggedIn": "",
+            "valueIfNoData": ""
+        },
+        "createAccount": {
+            "nav-button": "Crear Cuenta",
+            "nav-tool-tip": "Crear una Cuenta",
+            "nav-route": "/create-account/",
+            "header": "Crear una Cuenta Nueva",
+            "card": {
+                "cardMsg": "¡Ingrese su nombre, correo electrónico y contraseña y haga clic en enviar para crear una nueva cuenta!"
+            },
+            "id": "create-account-page",
+            "valueIfNotLoggedIn": "",
+            "valueIfNoData": ""
+        },
+        "deposit": {
+            "nav-button": "Depositar",
+            "nav-tool-tip": "Deposite en su Cuenta",
+            "nav-route": "/deposit/",
+            "header": "Hacer un Depósito",
+            "card": {
+                "cardMsg": "¡Ingrese una cantidad y haga clic en enviar para realizar un depósito en su cuenta!",
+                "balanceMsg": "Saldo Corriente: $"
+            },
+            "id": "deposit-page",
+            "valueIfNotLoggedIn": "Debes iniciar sesión para depositar.",
+            "valueIfNoData": ""
+        },
+        "withdraw": {
+            "nav-button": "Retirar",
+            "nav-tool-tip": "Retirar de su Cuenta",
+            "nav-route": "/withdraw/",
+            "header": "Hace un Retiro",
+            "card": {
+                "cardMsg": "Ingrese una cantidad y haz clic el botón para realizar un retiro de su cuenta.",
+                "balanceMsg": "Saldo Corriente: $"
+            },
+            "id": "withdraw-page",
+            "valueIfNotLoggedIn": "Debes iniciar sesión y tener un saldo positivo para solicitar un retiro.",
+            "valueIfNoData": "Debes tener un saldo positivo para poder hacer un retiro de su cuenta."
+        }, 
+        "transactions": {
+            "nav-button": "Transacciones",
+            "nav-tool-tip": "Ver todas sus Transacciones",
+            "nav-route": "/transactions/",
+            "header": "Transacciones Recientes",
+            "card": {
+                "cardMsg": "",
+                "cardCols": ["Fecha","Descripción","Crédito","Débito","Saldo"]
+            },
+            "id": "all-data-page",
+            "valueIfNotLoggedIn": "No hay datos disponibles para mostrar.",
+            "valueIfNoData": "Debes iniciar sesión para ver las transacciones recientes."
+        },
+        "allData": {
+            "nav-button": "Todos los Datos",
+            "nav-tool-tip": "Ver todos los Datos del Usuario",
+            "nav-route": "/all-data/",
+            "header": "Datos de los Usuarios",
+            "card": {
+                "cardMsg": "",
+                "cardCols": ["Fecha","Nombre","Correo Electronica","Contraseña"]
+            },
+            "id": "user-data-page",
+            "valueIfNotLoggedIn": "",
+            "valueIfNoData": "No data available to display."
+        }
+    },
+
+    "forms": {
+        "createAccount": {
+            "formSubmission" : {
+                    "buttons": [ {"type":"submit",
+                                "name":"submit",
+                                "display":"Crear Cuenta",
+                                "altDisplay": "Agregar Otra Cuenta",
+                                "className":"btn btn-primary",
+                                "dependency":"UsersExist"}],
+                    "success": "Se ha creado su cuenta y ha iniciado sesión automáticamente. Ahora puede realizar depósitos y retiros.",
+                    "failure": "¡Ya hay una cuenta asociada a ese correo electrónico! Utilice una diferente.",
+                    "idRoot": "create-account",
+                    "typeOfAction" : "Cuenta creada",
+                    "displayAlt": "accountCreated"
+            },
+            "formFields" : [
+                    {
+                    "name" : "name",
+                    "display" : "Nombre",
+                    "type" : "text",
+                    "validation": [
+                        {"functionName": "hasInput", "error":"Ingresa tu nombre"},
+                        {"functionName": "hasInput", "args":[{"name":"len","value":4}],"error": "El nombre debe tener 4 o más caracteres"}]
+                    },
+                    {
+                        "name" : "email",
+                        "display" : "Correo Electronico",
+                        "type" : "text",
+                        "validation": [
+                            {"functionName": "hasInput", "error":"Ingresa tu dirección de correo electrónico"},
+                            {"functionName": "isValidEmailFormat", "error": "Ingresa una dirección de correo electrónico válida"}
+                        ]
+                    },
+                    {
+                        "name" : "password",
+                        "display" : "Contraseña",
+                        "type" : "password",
+                        "validation": [
+                            {"functionName": "hasInput", "args":[{"name":"len","value":8}], "error":"Debe tener 8 caracteres o más"},
+                            {"functionName": "isValidPasswordFormat", "error": "Debe incluir letra, número y carácter especial"}
+                        ]
+                    }
+                ],
+            "valueIfNotLoggedIn": "",
+            "valueIfNoData": ""
+        },
+        "deposit": {
+            "formSubmission" : {
+                    "buttons": [ {"type":"submit",
+                                "name":"submit",
+                                "display":"Depósito",
+                                "className":"btn btn-primary",
+                                "dependency":false}],
+                    "success": "¡Su depósito ha sido registrado!",
+                    "failure": "No pudimos realizar un depósito. Vuelva a intentarlo más tarde.",
+                    "idRoot": "deposit-form",
+                    "typeOfAction" : "Formulario de depósito"
+            },
+            "formFields" : [{
+                "name" : "deposit",
+                "display" : "Amount ($)",
+                "type" : "text",
+                "validation": [
+                    {"functionName": "hasInput", "error":"Ingresa una cantidad para depositar"},
+                    {"functionName": "isPositive", "error": "Ingresa una cantidad positiva para depositar"},
+                    {"functionName": "isNumber", "error": "Ingresa un número válido, sin símbolo de moneda"},
+                    {"functionName": "hasTwoSigFigs", "error": "Ingresa solo 2 puntos decimales"}
+                ]
+            }],
+            "valueIfNotLoggedIn": "Debes iniciar sesión para depositar.",
+            "valueIfNoData": ""
+        },
+        "withdraw": {
+            "formSubmission" : {
+                    "buttons": [ {"type":"submit",
+                                "name":"submit",
+                                "display":"Retirar",
+                                "className":"btn btn-primary",
+                                "dependency":false}],
+                    "success": "Su retiro ha sido registrado.",
+                    "failure": "No pudimos hacer un retiro. Por favor, inténtelo de nuevo más tarde.",
+                    "idRoot": "withdraw-form-",
+                    "typeOfAction" : "Retiro de la cuenta"
+            },
+            "formFields" : [{
+                "name" : "withdraw",
+                "display" : "Cantidad ($)",
+                "type" : "text",
+                "validation": [
+                    {"functionName": "hasInput", "error":"Ingrese una cantidad para retirar"},
+                    {"functionName": "isPositive", "error": "Ingrese una cantidad positiva para retirar"},
+                    {"functionName": "isNumber", "error": "Ingrese un número válido, sin símbolo de moneda"},
+                    {"functionName": "hasTwoSigFigs", "error": "Ingrese solo 2 puntos decimales"},
+                    {"functionName": "isLessThanBalance", "args":[{"name":"balance","value":""}], "error": "Alerta de sobregiro: la cantidad es mayor que su saldo disponible"}
+                ]
+            }],
+            "valueIfNotLoggedIn": "¡Debes iniciar sesión y tener un saldo positivo para solicitar un retiro!",
+            "valueIfNoData": "¡Debe tener un saldo positivo para poder hacer un retiro de su cuenta!"
+        },
+        "signIn": {
+            "formSubmission" : {
+                    "buttons": [ {"type":"submit",
+                                "name":"submit",
+                                "display":"Iniciar Sesión",
+                                "altDisplay": "Iniciar Sesión",
+                                "className":"btn btn-primary",
+                                "dependency":false}],
+                    "success": "Ha iniciado sesión. Ahora puede realizar depósitos y retiros.",
+                    "failure": "Hubo un problema con su correo electrónico o contraseña. Inténtalo de nuevo.",
+                    "idRoot": "sign-in",
+                    "typeOfAction" : "Iniciar Sesión Exitoso"
+            },
+            "formFields" : [
+                    {
+                        "name" : "email",
+                        "display" : "Correo Electrónico",
+                        "type" : "text",
+                        "validation": [
+                            {"functionName": "hasInput", "error":"Please enter your email address"},
+                            {"functionName": "isValidEmailFormat", "error": "Please enter a valid email address"}
+                        ]
+                    },
+                    {
+                        "name" : "password",
+                        "display" : "Contraseña",
+                        "type" : "password",
+                        "validation": [
+                            {"functionName": "hasInput", "args":[{"name":"len","value":8}], "error":"Must be 8 characters or longer"},
+                            {"functionName": "isValidPasswordFormat", "error": "Must include letter, number & special character."}
+                        ]
+                    }
+                ],
+            "valueIfNotLoggedIn": "",
+            "valueIfNoData": ""
+        }
+    },
+    "components": {
+        "footer": {
+            "links": ["Ubicaciones","Contáctenos","Banca Accessible","Carreras","Privacidad","Seguridad","Mapa del Sitio"],
+            "connectCTA": "Conéctese con Nosotros",
+            "memberFDIC": "Miembro FDIC.",
+            "rightsReserved": "Todos los derechos reservados."},
+        "locations": {
+            "labels": {
+                "branch":"Branch",
+                "atm": "ATM",
+                "address": "Address",
+                "hours": "Hours",
+                "directions": "Directions"
+            },
+            "id": "location-page"  
+        }  
+     },
+    "general": {
+        "successTitle":"Éxito",
+        "failureTitle":"Error",
+        "signIn":"Iniciar Sesión",
+        "signInHeader": "Iniciar Sesión a su Cuenta",
+        "signOut":"Desconectar",
+        "en":"Inglés",
+        "es":"Español"
+    }
+}
